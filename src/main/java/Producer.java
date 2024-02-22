@@ -13,7 +13,7 @@ public class Producer {
     ConnectionFactory factory = new ConnectionFactory();
 	 
 	 Random random = new Random();
-     double temperature;
+     double temperature = Maths.random()*100;
      factory.setHost("BROKER_HOST");
 
     try (Connection connection = factory.newConnection();
