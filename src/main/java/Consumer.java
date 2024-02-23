@@ -15,9 +15,12 @@ public class Consumer {
     Channel channel = connection.createChannel();
 
     channel.exchangeDeclare(EXCHANGE_NAME, "fanout");
-    String queueName = channel.queueDeclare().getQueue();
-    channel.queueBind(queueName, EXCHANGE_NAME, "");
 
+    String queueName = channel.queueDeclare().getQueue();
+	channel.queueBind(queueName, EXCHANGE_NAME, "");
+	channel.queueDeclare("pile_Quantite_eau", true, false, false, null);
+	channel.queueDeclare("pile_Quantite_cafe", true, false, false, null);
+    
     System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
 
     DeliverCallback deliverCallback = (consumerTag, delivery) -> {
@@ -25,5 +28,7 @@ public class Consumer {
         System.out.println(" [x] Received '" + message + "'");
     };
     channel.basicConsume(queueName, true, deliverCallback, consumerTag -> { });
+	channel.basicConsume("pile_Quantite_eau", true, deliverCallback, consumerTag -> { });
+	channel.basicConsume("pile_Quantite_cafe", true, deliverCallback, consumerTag -> { });
   }
 }

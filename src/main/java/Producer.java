@@ -22,6 +22,19 @@ public class Producer {
          String message = "La température est de: " + temperature + " degrés";
         channel.basicPublish(EXCHANGE_NAME, "", null, message.getBytes("UTF-8"));
         System.out.println(" [x] Sent '" + message + "'");
-    }
+
+		/*quantite_eau.set(getQuantitéEau-(quantité eau utilisé pour un café))*/
+		/*quantite_cafe.set(getQuantitéCafe-(quantité cafe utilisé pour un café))*/
+		/*si quantite_eau<seuil{
+			String messageEau = "Le seuil d'eau de la machine à café a été atteind, pensez à re remplir"
+			channel.basicPublish(EXCHANGE_NAME, "", null,messagesEau.getBytes("UTF-8"));
+			System.out.println(" [x] Sent '" + messageEau + "'");
+		}
+		/*si quantite_eau<seuil{
+			String messageCafe = "Faites attention, il ne vous reste du café que pour très peu de tasse encore, pensez à le remplir"
+			channel.basicPublish(EXCHANGE_NAME, "", null,messagesCafe.getBytes("UTF-8"));
+			System.out.println(" [x] Sent '" + messageCafe + "'");
+   		 }*/
   }
+}
 }
